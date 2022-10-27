@@ -1,4 +1,5 @@
 ﻿// Перевод числа из десятичной системы счисления в двоичную
+//Вариант 1: с помощью массива
 /*
 int x = 18;
 int Res = 0;
@@ -19,35 +20,53 @@ for (index = (b.Length - 1); index >= 0; index--)
 }
 */
 
-int des = 17;
-int res = 0;
-int result = 0;
-
-if(des % 2 == 0)
+//Вариант 2: 
+Console.Write("Введите число: ");
+void From10To2( int num)
 {
-    Console.Write("Надо подумать над этим");
-}
-else
-{
-    while(des >= 1)
+    int des = num;
+    int res = 0;
+    int result = 0;
+    if(des % 2 == 0)
     {
-    
-        res = (des % 2);
-        des = des / 2;
+        while(des >= 1)
+        {
+            res = (des % 2);
+            des = des / 2;
 
-        result = result*10 + res;
-
-        Console.WriteLine("Остаток от деления - " + res + ", прибавляем остаток к числу = " + result + ", ");
-    }
-    
-    while(result > 0)
-    {
+            result = result*10 + res;
+        }
+        
         res = 0;
-        res = res*10 + result % 10;
-        result = result / 10;
-        Console.Write(res);
+        while(result > 0)
+        {
+            res = res*10 + result % 10;
+            result = result / 10;
+        }
+        res = res * 10;
+        Console.WriteLine(($"Если перевести число {num} из десятичной системы счисления в двоичную, получится число {res}")); // переворачиваем число из остатков деления
+    }
+    else
+    {
+        while(des >= 1)
+        {
+            res = (des % 2);
+            des = des / 2;
+
+            result = result*10 + res;
+        }
+
+        res = 0;
+        
+        while(result > 0)
+        {
+            res = res*10 + result % 10;
+            result = result / 10;
+        }
+        Console.WriteLine($"Если перевести число {num} из десятичной системы счисления в двоичную, получится число {res}");
     }
 }
+int num = Convert.ToInt32(Console.ReadLine());
 
+From10To2(num);
 
-  
